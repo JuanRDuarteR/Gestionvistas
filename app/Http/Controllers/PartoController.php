@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\vaca;
+use App\parto;
 
-class VacaController extends Controller
+class PartoController extends Controller
 {
-    //Este metodo sirve para proteger las rutas, que sea necesario el estar logueado
-
     public function __construct()
     {
         $this->middleware('auth');
@@ -18,24 +16,23 @@ class VacaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request) //Agregar el request para la busqueda
+    public function index()
     {
         $usuarioEmail = auth()->user()->email;
-        $vacas = vaca::where('usuario', $usuarioEmail)
-        ->Search($request->nombre)
+        $partos = parto::where('usuario', $usuarioEmail)
+        ->orderBy('fecha', 'ASC') 
         ->paginate(2);
-        return view('vacas.index',compact('vacas'));
+        return view('partos.index',compact('partos'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * 
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        return view('vacas.create');
+        return view('partos.create');
     }
 
     /**
@@ -47,21 +44,19 @@ class VacaController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'arete' => 'required|max:255',
-            'nombre' => 'required|max:255',
-            'lote' => 'required|max:255',
+            'arete_vaca' => 'required|max:255',
+            'fecha' => 'required|date',
+            'peso' => 'required|max:255',
             'raza' => 'required|max:255',
-            'origen' => 'required|max:255',
-            'fecha_inc' => 'required|date',
-            'fecha_nac' => 'required|date',
-            'edad' => 'required|numeric',
-            'estatus' => 'required|max:255',
+            'encargado' => 'required|max:255',
+            'estado' => 'required|max:255',
+            'sexo' => 'required|max:255',
             'usuario' =>'required|email',
         ]);
        
-        $vaca = Vaca::create($validatedData);
+        $parto = parto::create($validatedData);
    
-        return redirect('/vacas')->with('success', 'El animal se edito correctamente');
+        return redirect('/partos')->with('success', 'El parto se registro correctamente');
     }
 
     /**
@@ -83,9 +78,8 @@ class VacaController extends Controller
      */
     public function edit($id)
     {
-        $vaca = Vaca::findOrFail($id);
-
-        return view('vacas.edit', compact('vaca'));
+        $parto = parto::findOrFail($id);
+        return view('partos.edit', compact('parto'));
     }
 
     /**
@@ -98,19 +92,18 @@ class VacaController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'arete' => 'required|max:255',
-            'nombre' => 'required|max:255',
-            'lote' => 'required|max:255',
+            'arete_vaca' => 'required|max:255',
+            'fecha' => 'required|date',
+            'peso' => 'required|max:255',
             'raza' => 'required|max:255',
-            'origen' => 'required|max:255',
-            'fecha_inc' => 'required|date',
-            'fecha_nac' => 'required|date',
-            'edad' => 'required|numeric',
-            'estatus' => 'required|max:255',
+            'encargado' => 'required|max:255',
+            'estado' => 'required|max:255',
+            'sexo' => 'required|max:255',
         ]);
-        Vaca::whereId($id)->update($validatedData);
-        return redirect('/vacas')->with('success', 'El animal se actualizo correctamente');
+        parto::whereId($id)->update($validatedData);
+        return redirect('/partos')->with('success', 'El parto se edito correctamente');
     }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -119,8 +112,8 @@ class VacaController extends Controller
      */
     public function destroy($id)
     {
-        $vaca = Vaca::findOrFail($id);
-        $vaca->delete();
-        return redirect('/vacas')->with('success', 'El animal se elimino correctamente');
+        $parto = parto::findOrFail($id);
+        $parto->delete();
+        return redirect('/partos')->with('success', 'El parto se elimino correctamente');
     }
 }

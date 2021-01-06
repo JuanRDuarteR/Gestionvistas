@@ -25,7 +25,6 @@ class CreateBajasTable extends Migration
             $table->integer('edad');
             $table->date('fecha_baja');
             $table->string('motivo');
-            
             $table->foreign('vaca_id')->references('id')->on('vacas')->onDelete('cascade');
             $table->string('usuario'); //Es el usuario al cual pertenecen los registros
             $table->timestamps();

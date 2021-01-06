@@ -1,5 +1,4 @@
 <!-- edit.blade.php -->
-
 @extends('layouts.app')
 
 @section('content')
@@ -32,7 +31,7 @@
       <div class="form-row">
       <div class="form-group col-md-4">
           <label for="arete">Arete</label>
-          <input type="text" class="form-control" name="nombre" value="{{$vaca->arete}}">
+          <input type="text" class="form-control" name="arete" value="{{$vaca->arete}}">
         </div>
         <div class="form-group col-md-4">
           <label for="nombre">Nombre</label>
@@ -66,7 +65,6 @@
           <label for="Estatus">Estatus</label>
           <input type="text" class="form-control" name="estatus" value="{{$vaca->estatus}}">
         </div>
-
       </div>
 
       <button type="submit" class="btn btn-primary">Actualizar animal</button>

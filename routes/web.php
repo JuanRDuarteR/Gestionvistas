@@ -26,3 +26,7 @@ Route::resource('/actividades', 'ActividadController');
 Route::resource('/bajas', 'BajaController');
 
 Route::resource('/vacas', 'VacaController');
+
+Route::resource('/partos', 'PartoController');
+
+Route::resource('/enfermedades', 'EnfermedadController');

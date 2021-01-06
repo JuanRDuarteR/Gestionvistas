@@ -45,17 +45,20 @@
             }
 
             .title {
+                background-color: rgba(76, 175, 80, 0.5);
                 font-size: 84px;
+                color: black;
             }
 
             .links > a {
-                color: #636b6f;
+                color: black;
                 padding: 0 25px;
-                font-size: 13px;
+                font-size: 20px;
                 font-weight: 600;
                 letter-spacing: .1rem;
                 text-decoration: none;
                 text-transform: uppercase;
+                background-color: rgba(76, 175, 80, 0.5);
             }
 
             .m-b-md {
@@ -63,7 +66,7 @@
             }
         </style>
     </head>
-    <body>
+    <body style="background-image: url('{{URL::asset('/images/cows.jpg')}}'); background-size: cover; background-position: top center;">
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
@@ -81,17 +84,15 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                PROYECTO GESTION PECUARIA
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="{{route('vacas.index')}}">Vacas</a>
+                    <a href="{{route('enfermedades.index')}}">Enfermedades</a>
+                    <a href="{{route('partos.index')}}">Partos</a>
+                    <a href="{{route('bajas.index')}}">Bajas</a>
+                    <a href="{{route('actividades.index')}}">Actividades</a>
                 </div>
             </div>
         </div>
