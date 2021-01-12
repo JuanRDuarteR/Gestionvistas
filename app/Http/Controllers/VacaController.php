@@ -18,13 +18,13 @@ class VacaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request) //Agregar el request para la busqueda
+    public function index(Request $request)
     {
         $usuarioEmail = auth()->user()->email;
         $vacas = vaca::where('usuario', $usuarioEmail)
-        ->Search($request->nombre)
-        ->paginate(2);
-        return view('vacas.index',compact('vacas'));
+            ->Search($request->nombre)
+            ->paginate(4);
+        return view('vacas.index', compact('vacas'));
     }
 
     /**
@@ -47,7 +47,7 @@ class VacaController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'arete' => 'required|max:255',
+            'arete' => ['required', 'string', 'max:255', 'unique:vacas'],
             'nombre' => 'required|max:255',
             'lote' => 'required|max:255',
             'raza' => 'required|max:255',
@@ -55,13 +55,10 @@ class VacaController extends Controller
             'fecha_inc' => 'required|date',
             'fecha_nac' => 'required|date',
             'edad' => 'required|numeric',
-            'estatus' => 'required|max:255',
-            'usuario' =>'required|email',
+            'usuario' => 'required|email',
         ]);
-       
         $vaca = Vaca::create($validatedData);
-   
-        return redirect('/vacas')->with('success', 'El animal se edito correctamente');
+        return redirect('/vacas')->with('success', 'El animal se creo correctamente');
     }
 
     /**
@@ -84,7 +81,6 @@ class VacaController extends Controller
     public function edit($id)
     {
         $vaca = Vaca::findOrFail($id);
-
         return view('vacas.edit', compact('vaca'));
     }
 
@@ -106,7 +102,6 @@ class VacaController extends Controller
             'fecha_inc' => 'required|date',
             'fecha_nac' => 'required|date',
             'edad' => 'required|numeric',
-            'estatus' => 'required|max:255',
         ]);
         Vaca::whereId($id)->update($validatedData);
         return redirect('/vacas')->with('success', 'El animal se actualizo correctamente');

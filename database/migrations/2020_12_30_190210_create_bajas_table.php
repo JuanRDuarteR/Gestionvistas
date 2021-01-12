@@ -15,7 +15,7 @@ class CreateBajasTable extends Migration
     {
         Schema::create('bajas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->biginteger('vaca_id')->unsigned();
+            $table->biginteger('arete_vaca')->unsigned();//Campo para relacion de tablas
             $table->string('nombre');
             $table->string('lote');
             $table->string('raza');
@@ -25,7 +25,7 @@ class CreateBajasTable extends Migration
             $table->integer('edad');
             $table->date('fecha_baja');
             $table->string('motivo');
-            $table->foreign('vaca_id')->references('id')->on('vacas')->onDelete('cascade');
+            $table->foreign('arete_vaca')->references('id')->on('vacas')->onDelete('cascade');
             $table->string('usuario'); //Es el usuario al cual pertenecen los registros
             $table->timestamps();
         });

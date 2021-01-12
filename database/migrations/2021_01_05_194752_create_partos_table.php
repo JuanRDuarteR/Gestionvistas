@@ -15,15 +15,19 @@ class CreatePartosTable extends Migration
     {
         Schema::create('partos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('arete_vaca');
+            $table->biginteger('arete_vaca')->unsigned();//Campo para relacion de tablas
+            //$table->string('arete_vaca');
             $table->date('fecha');
-            $table->string('peso');
+            $table->integer('peso');
             $table->string('raza');
             $table->string('encargado');
             $table->string('estado');
             $table->string('sexo');
             $table->string('usuario'); //Es el usuario al cual pertenecen los registros
             $table->timestamps();
+
+            //Relacion
+            $table->foreign('arete_vaca')->references('id')->on('vacas')->onDelete('cascade');
         });
     }
 

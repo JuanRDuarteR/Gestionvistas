@@ -15,7 +15,8 @@ class CreateEnfermedadsTable extends Migration
     {
         Schema::create('enfermedads', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('arete_vaca');
+            $table->biginteger('arete_vaca')->unsigned();//Campo para relacion de tablas
+            //$table->string('arete_vaca');
             $table->date('fecha');
             $table->string('enfermedad');
             $table->string('tratamiento');
@@ -23,6 +24,9 @@ class CreateEnfermedadsTable extends Migration
             $table->string('estado');
             $table->string('usuario');
             $table->timestamps();
+
+            //Relacion
+            $table->foreign('arete_vaca')->references('id')->on('vacas')->onDelete('cascade');
         });
     }
 

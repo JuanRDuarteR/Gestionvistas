@@ -18,6 +18,9 @@
                 font-weight: 200;
                 height: 100vh;
                 margin: 0;
+                background-image: url("/images/cows.jpg");
+                background-size: cover; 
+                background-position: top center;
             }
 
             .full-height {
@@ -45,7 +48,7 @@
             }
 
             .title {
-                background-color: rgba(76, 175, 80, 0.5);
+                background-color: rgba(130, 130, 130, 0.5);
                 font-size: 84px;
                 color: black;
             }
@@ -58,7 +61,7 @@
                 letter-spacing: .1rem;
                 text-decoration: none;
                 text-transform: uppercase;
-                background-color: rgba(76, 175, 80, 0.5);
+                background-color: rgba(130, 130, 130, 0.5);
             }
 
             .m-b-md {
@@ -66,17 +69,17 @@
             }
         </style>
     </head>
-    <body style="background-image: url('{{URL::asset('/images/cows.jpg')}}'); background-size: cover; background-position: top center;">
+    <body>
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/home') }}">Inicio</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
+                        <a href="{{ route('login') }}">Ingresar</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
+                            <a href="{{ route('register') }}">Registrar</a>
                         @endif
                     @endauth
                 </div>

@@ -7,7 +7,7 @@
   <title>Virtua|Gestion Ganado</title>
   <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" />
 </head>
-<body style="background-image: url('{{URL::asset('/images/vaca.jpg')}}'); background-size: cover; background-position: top center;">
+<body style=" background-size: cover; background-position: top center;">
 <nav class="navbar navbar-dark bg-dark">
     <a href="#" class="navbar-brand">Virtua</a>
     <a href="{{ url('/') }} " class="btn btn-primary">Menu</a>

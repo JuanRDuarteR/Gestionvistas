@@ -25,11 +25,10 @@
       <div class="col">
         <h2 class="text-center">Editando: {{$vaca->nombre}}</h2>
       </div>
-
       @csrf
       @method('PATCH')
       <div class="form-row">
-      <div class="form-group col-md-4">
+        <div class="form-group col-md-4">
           <label for="arete">Arete</label>
           <input type="text" class="form-control" name="arete" value="{{$vaca->arete}}">
         </div>
@@ -59,14 +58,9 @@
         </div>
         <div class="form-group col-md-4">
           <label for="Edad">Edad</label>
-          <input type="text" class="form-control" name="edad" value="{{$vaca->edad}}">
-        </div>
-        <div class="form-group col-md-4">
-          <label for="Estatus">Estatus</label>
-          <input type="text" class="form-control" name="estatus" value="{{$vaca->estatus}}">
+          <input type="number" min="0" class="form-control" name="edad" value="{{$vaca->edad}}">
         </div>
       </div>
-
       <button type="submit" class="btn btn-primary">Actualizar animal</button>
       <a href="{{route('vacas.index')}}" class="btn btn-success">Volver</a>
     </form>
