@@ -20,7 +20,10 @@ class BajaController extends Controller
      */
     public function index()
     {
-        //
+        $usuarioEmail = auth()->user()->email;
+        $bajas = baja::where('usuario', $usuarioEmail)
+        ->paginate(2);
+        return view('bajas.index',compact('bajas'));
     }
 
     /**
@@ -30,7 +33,7 @@ class BajaController extends Controller
      */
     public function create()
     {
-        //
+        return view('bajas.create');
     }
 
     /**
@@ -41,7 +44,22 @@ class BajaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'vaca_id' => 'required|max:255',
+            'arete_vaca' => 'required|max:255',
+            'nombre' => 'required|max:255',
+            'lote' => 'required|max:255',
+            'raza' => 'required|max:255',
+            'origen' => 'required|max:255',
+            'fecha_inc' => 'required|date',
+            'fecha_nac' => 'required|date',
+            'edad' => 'required|numeric',
+            'fecha_baja' => 'required|date',
+            'motivo' => 'required|max:255',
+            'usuario' => 'required|email',
+        ]);
+        $baja = Baja::create($validatedData);
+        return redirect('/bajas')->with('success', 'Baja creada');
     }
 
     /**
@@ -63,7 +81,8 @@ class BajaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $baja = baja::findOrFail($id);
+        return view('bajas.edit', compact('baja'));
     }
 
     /**
@@ -75,7 +94,22 @@ class BajaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'vaca_id' => 'required|max:255',
+            'arete_vaca' => 'required|max:255',
+            'nombre' => 'required|max:255',
+            'lote' => 'required|max:255',
+            'raza' => 'required|max:255',
+            'origen' => 'required|max:255',
+            'fecha_inc' => 'required|date',
+            'fecha_nac' => 'required|date',
+            'edad' => 'required|numeric',
+            'fecha_baja' => 'required|date',
+            'motivo' => 'required|max:255',
+            'usuario' => 'required|email',
+        ]);
+        baja::whereId($id)->update($validatedData);
+        return redirect('/bajas')->with('success', 'La baja se actualizo correctamente');
     }
 
     /**
@@ -86,6 +120,8 @@ class BajaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $baja = baja::findOrFail($id);
+        $baja->delete();
+        return redirect('/bajas')->with('success', 'La baja se elimino correctamente');
     }
 }

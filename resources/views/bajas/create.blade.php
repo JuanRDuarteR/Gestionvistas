@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.app')
 
 @section('content')
 <style>
@@ -25,36 +25,39 @@
       <div class="form-row">
         <div class="form-group col-md-4">
           <label for="name">ID de la vaca:</label>
-          <input type="text" class="form-control" name="vaca_id" value="{{$vaca->id}}" />
+          <input type="text" class="form-control" name="vaca_id"/>
         </div>
-
+        <div class="form-group col-md-4">
+          <label for="name">Arete:</label>
+          <input type="text" class="form-control" name="arete_vaca"/>
+        </div>
         <div class="form-group col-md-4">
           <label for="name">Nombre Vaca:</label>
-          <input type="text" class="form-control" name="nombre" value="{{$vaca->nombre}}" />
+          <input type="text" class="form-control" name="nombre"/>
         </div>
         <div class="form-group col-md-4">
           <label for="name">Lote:</label>
-          <input type="text" class="form-control" name="lote" value="{{$vaca->lote}}" />
+          <input type="text" class="form-control" name="lote"/>
         </div>
         <div class="form-group col-md-4">
           <label for="price">Raza :</label>
-          <input type="text" class="form-control" name="raza" value="{{$vaca->raza}}" />
+          <input type="text" class="form-control" name="raza"/>
         </div>
         <div class="form-group col-md-4">
           <label for="quantity">Origen:</label>
-          <input type="text" class="form-control" name="origen" value="{{$vaca->origen}}" />
+          <input type="text" class="form-control" name="origen"/>
         </div>
         <div class="form-group col-md-4">
           <label for="quantity">Fecha de Incorporacion:</label>
-          <input type="date" class="form-control" name="fecha_inc" value="{{$vaca->fecha_inc}}" />
+          <input type="date" class="form-control" name="fecha_inc"/>
         </div>
         <div class="form-group col-md-4">
           <label for="quantity">Fecha Nacimiento:</label>
-          <input type="date" class="form-control" name="fecha_nac" value="{{$vaca->fecha_nac}}" />
+          <input type="date" class="form-control" name="fecha_nac"/>
         </div>
         <div class="form-group col-md-4">
           <label for="quantity">Edad:</label>
-          <input type="text" class="form-control" name="edad" value="{{$vaca->edad}}" />
+          <input type="text" class="form-control" name="edad"/>
         </div>
         <div class="form-group col-md-4">
           <label for="quantity">Fecha de baja:</label>
@@ -63,6 +66,10 @@
         <div class="form-group col-md-4">
           <label for="quantity">Motivo:</label>
           <input type="text" class="form-control" name="motivo" />
+        </div>
+        <div class="form-group col-md-4" style="display: none">
+          <label for="usuario">Usuario</label>
+          <input type="text" class="form-control" name="usuario" value="{{auth()->user()->email}}" />
         </div>
       </div>
       <button type="submit" class="btn btn-primary">Crear Baja</button>

@@ -30,3 +30,5 @@ Route::resource('/vacas', 'VacaController');
 Route::resource('/partos', 'PartoController');
 
 Route::resource('/enfermedades', 'EnfermedadController');
+
+Route::get('crear{id}','BajaController@crear')->name('bajas.crear');

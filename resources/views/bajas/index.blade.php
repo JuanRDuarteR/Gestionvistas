@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.app')
 
 @section('content')
 <style>
@@ -18,15 +18,12 @@
         <div>
           <h1 class="form-check form-check-inline">Bajas</h1>
           <a href="{{route('bajas.create')}}" class="btn btn-success float-right">Agragar baja</a>
-
         </div>
-
         <thead>
-
-
           <tr>
             <th>Id</th>
             <th>ID vaca</th>
+            <th>Arete</th>
             <th>Nombre</th>
             <th>Lote</th>
             <th>Raza</th>
@@ -35,7 +32,7 @@
             <th>Fecha de nacimiento</th>
             <th>Edad</th>
             <th>Fecha de Baja</th>
-            <th>Motivo</th>
+            <th>Motivo</th>   
             <td colspan="2">Action</td>
           </tr>
         </thead>
@@ -44,6 +41,7 @@
           <tr>
             <td>{{$baja->id}}</td>
             <td>{{$baja->vaca_id}}</td>
+            <td>{{$baja->arete_vaca}}</td>
             <td>{{$baja->nombre}}</td>
             <td>{{$baja->lote}}</td>
             <td>{{$baja->raza}}</td>

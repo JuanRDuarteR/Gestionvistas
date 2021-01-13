@@ -15,6 +15,7 @@ class CreateBajasTable extends Migration
     {
         Schema::create('bajas', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('vaca_id');
             $table->biginteger('arete_vaca')->unsigned();//Campo para relacion de tablas
             $table->string('nombre');
             $table->string('lote');
